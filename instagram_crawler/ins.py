@@ -14,10 +14,12 @@ from pathlib import Path
 import requests
 
 ROOT_URL = 'https://www.instagram.com/'
+PROXY = 'http://127.0.0.1:1087'
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
     'Cookie': 'csrftoken=2JzdvnHL9iMuxbV7KiJcASk8RlKuYWAQ'
 }
+USERNAME = 'takemeow'
 PATH = Path(f'./instagram/{USERNAME}')
 PATH.mkdir(parents=True, exist_ok=True)
 
@@ -176,6 +178,7 @@ async def main():
 def check (_):
     print('Start check...')
     with requests.get(urljoin(ROOT_URL, USERNAME), headers=HEADERS,
+                 proxies={'http': 'http://localhost:1087', 'https': 'https://localhost:1087'}) as resp:
         pattern = '"edge_owner_to_timeline_media":.?{"count":(.*?),"page_info"'
         count = int(re.findall(pattern, resp.text)[0])
         while True:
