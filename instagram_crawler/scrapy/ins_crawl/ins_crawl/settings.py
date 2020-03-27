@@ -67,7 +67,6 @@ ITEM_PIPELINES = {
    'ins_crawl.images.InsImagesPipeline.InsImagesPipeline':1,
 }
 
-IMAGES_STORE = '/Users/2h0n91i2hen/Pictures/Instagram/'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
